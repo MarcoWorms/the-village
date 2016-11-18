@@ -9,6 +9,31 @@ import {
   FirebaseLogoutButton
 } from './react-firebase'
 
+function Header (props) {
+  return (
+    <header>
+      <Link to='/'>Home</Link>
+      <br />
+      <p>{props.user
+          && <span>
+            {props.user.email}
+            <FirebaseLogoutButton>
+              logout
+            </FirebaseLogoutButton>
+          </span>
+      }</p>
+    </header>
+  )
+}
+
+function Footer (props) {
+  return (
+    <footer>
+      footer
+    </footer>
+  )
+}
+
 class App extends Component {
   handleUser = (user) => {
     this.props.dispatch({ type:'USER_STATE_CHANGED', payload: user })
@@ -18,20 +43,14 @@ class App extends Component {
       <div className={ styles.app }>
         <FirebaseConnect />
         <FirebaseHandleUser then={ this.handleUser } />
-        <Link to='/'>Go home you're drunk</Link>
-        <br />
-        <p>{ this.props.user
-            && <span>
-              {this.props.user.email}
-              <FirebaseLogoutButton>
-                logout
-              </FirebaseLogoutButton>
-            </span>
-        }</p>
+
+        <Header user={this.props.user} />
+
         <br />
         { this.props.children }
         <br />
-        <p>footer</p>
+
+        <Footer />
       </div>
     );
   }
