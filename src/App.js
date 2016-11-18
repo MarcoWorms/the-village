@@ -49,10 +49,18 @@ class HomeX extends Component {
 export const Home = connect(state => state)(HomeX)
 
 export class Login extends Component {
+  static contextTypes = {
+    router: React.PropTypes.object.isRequired
+  }
   render() {
     return (
       <div>
-        <FirebaseLoginButton provider="google" >
+        <FirebaseLoginButton
+          provider="google"
+          then={
+            (result) => this.context.router.push('/')
+          }
+        >
           login google
         </FirebaseLoginButton>
       </div>
@@ -61,7 +69,7 @@ export class Login extends Component {
 }
 
 export class NoPath extends Component {
-  render() { 
+  render() {
     return <p>404 fucks not given</p>
   }
 }

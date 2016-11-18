@@ -38,6 +38,7 @@ export class FirebaseLoginButton extends Component {
   handleLogin = () => {
     var provider = new firebase.auth.GoogleAuthProvider()
     firebase.auth().signInWithPopup(provider)
+      .then((result) => this.props.then && this.props.then(result))
       .catch(error => {
         console.log('authError', error)
       })
