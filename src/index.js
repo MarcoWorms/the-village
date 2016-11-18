@@ -1,9 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Router, Route, hashHistory } from 'react-router'
-import App from './App';
-import { Login } from './App';
-import { NoPath } from './App';
+import App, { Login, NoPath } from './App';
 import './index.css';
 
 ReactDOM.render(
