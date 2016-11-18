@@ -51,3 +51,16 @@ export class FirebaseLoginButton extends Component {
   }
 }
 
+export class FirebaseLogoutButton extends Component {
+  handleLogout = () => {
+    firebase.auth().signOut()
+  }
+  render() {
+    return (
+      <button onClick={ this.handleLogout }>
+        {this.props.children}
+      </button>
+    )
+  }
+}
+
