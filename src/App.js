@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import styles from './styles.css';
-import { FirebaseConnect, FirebaseHandleUser, FirebaseGoogleLogin } from './react-firebase'
+import { FirebaseConnect, FirebaseHandleUser, FirebaseLoginButton } from './react-firebase'
 
 class App extends Component {
   handleUser = (user) => {
@@ -12,7 +12,7 @@ class App extends Component {
       <div className={ styles.app }>
         <FirebaseConnect />
         <FirebaseHandleUser then={ this.handleUser } />
-        <p>header</p>
+        <span>{ this.props.user && this.props.user.email }</span>
         { this.props.children }
         <p>footer</p>
       </div>
@@ -21,14 +21,13 @@ class App extends Component {
 }
 
 export class Login extends Component {
-  handleLogin = () => {
-    FirebaseGoogleLogin() 
-  }
   render() {
     return (
       <div>
         <p>pls login</p>
-        <button onClick={ this.handleLogin }>google</button>
+        <FirebaseLoginButton provider="google" >
+          google
+        </FirebaseLoginButton>
       </div>  
     )
   }

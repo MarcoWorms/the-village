@@ -15,8 +15,10 @@ function initialState() {
 function reducers (state = initialState(), action) {
   switch (action.type) {
     case 'USER_STATE_CHANGED':
-      console.log(action)
-      return state
+      return {
+        ...state,
+        user: action.payload
+      }
     default:
       return state
   }
