@@ -12,16 +12,19 @@ import {
 function Header (props) {
   return (
     <header>
-      <Link to='/'>Home</Link>
-      <br />
-      <p>{props.user
-          && <span>
-            {props.user.email}
-            <FirebaseLogoutButton>
-              logout
-            </FirebaseLogoutButton>
-          </span>
-      }</p>
+      <p>
+        <Link to='/'>Home</Link>
+        {
+          props.user
+            && 
+            <span>
+              {props.user.email}
+              <FirebaseLogoutButton>
+                logout
+              </FirebaseLogoutButton>
+            </span>
+        }
+      </p>
     </header>
   )
 }
@@ -43,13 +46,8 @@ class App extends Component {
       <div className={ styles.app }>
         <FirebaseConnect />
         <FirebaseHandleUser then={ this.handleUser } />
-
         <Header user={this.props.user} />
-
-        <br />
         { this.props.children }
-        <br />
-
         <Footer />
       </div>
     );
@@ -73,7 +71,7 @@ export class Login extends Component {
   }
   render() {
     return (
-      <div>
+      <p>
         <FirebaseLoginButton
           provider="google"
           then={
@@ -82,7 +80,7 @@ export class Login extends Component {
         >
           login google
         </FirebaseLoginButton>
-      </div>
+      </p>
     )
   }
 }
