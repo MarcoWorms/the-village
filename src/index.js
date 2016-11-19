@@ -13,6 +13,7 @@ function initialState() {
 }
 
 function reducers (state = initialState(), action) {
+  console.log(action)
   switch (action.type) {
     case 'USER_STATE_CHANGED':
       return {

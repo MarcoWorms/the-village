@@ -34,33 +34,43 @@ export class FirebaseHandleUser extends Component {
   }
 }
 
+function getProvider(providerName) {
+  switch (providerName) {
+    case 'google':
+      return new firebase.auth.GoogleAuthProvider()
+    case 'github':
+      return new firebase.auth.GoogleAuthProvider()
+  }
+}
+
 export class FirebaseLoginButton extends Component {
-  handleLogin = () => {
-    var provider = new firebase.auth.GoogleAuthProvider()
+  handleLogin = (e) => {
+    e.preventDefault()
+    var provider = getProvider(this.props.provider)
+
     firebase.auth().signInWithPopup(provider)
       .then((result) => this.props.then && this.props.then(result))
-      .catch(error => {
-        console.log('authError', error)
-      })
+      .catch(error => console.log('authError', error))
   }
   render() {
     return (
-      <button onClick={ this.handleLogin }>
-        {this.props.children}
-      </button>
+      <a href="#" onClick={ this.handleLogin }>
+        {this.props.text}
+      </a>
     )
   }
 }
 
 export class FirebaseLogoutButton extends Component {
-  handleLogout = () => {
+  handleLogout = (e) => {
+    e.preventDefault()
     firebase.auth().signOut()
   }
   render() {
     return (
-      <button onClick={ this.handleLogout }>
-        {this.props.children}
-      </button>
+      <a href="#" onClick={ this.handleLogout }>
+        {this.props.text}
+      </a>
     )
   }
 }

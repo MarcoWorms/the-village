@@ -1,3 +1,51 @@
 .app {
+  min-height: 400px;
+  background-color: #444444;
+  color: #eeeeee;
+}
 
+.header {
+  width: 100%;
+  background-color: #333333;
+}
+
+.userInfo {
+  color: #eeeeee;
+  margin: 0 20px;
+}
+
+.userPicture {
+  position: absolute;
+  top: 3px;
+  height: 35px;
+  width: 35px;
+  border-radius: 35px;
+}
+
+.userEmail {
+  margin-left: 50px;
+}
+
+.footer {
+  width: 100%;
+  background-color: #333333;
+  color: #eeeeee;
+}
+
+a:link, a:visited {
+  background-color: #f44336;
+  padding: 10px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  color: #eeeeee;
+  border-radius: 5px;
+  border: solid 1px black;
+}
+
+
+a:hover, a:active {
+  background-color: red;
+  color: #eeeeee;
+  border-radius: 3px;
 }
