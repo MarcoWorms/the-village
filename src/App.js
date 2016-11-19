@@ -2,35 +2,58 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router'
 import styles from './styles.css'
+import { Grid, Row, Col } from 'react-flexbox-grid'
 import {
   FirebaseConnect,
   FirebaseHandleUser,
   FirebaseLoginButton,
   FirebaseLogoutButton
 } from './react-firebase'
+import GameMain from './GameMain'
+
+
+class UserPicture extends Component {
+  render() {
+    return (
+      <div
+        className={ styles.userPicture }
+        style={{ backgroundImage: `url("${this.props.children}")` }}
+      />
+    )
+  }
+}
 
 function Header (props) {
   return (
     <header className={ styles.header }>
-      <Link to='/'>Home</Link>
-      {
-        props.user
-          ?
-          <span>
-            <FirebaseLogoutButton
-              text="Logout" 
-            />
-            <span className={ styles.userInfo } >
-              <img className={ styles.userPicture }
-                src={ props.user.photoURL }
-              ></img>
-              <span className={ styles.userEmail }>{ props.user.email }</span>
-            </span>
-          </span>
-          :
-          <Link to='/login'>Login</Link>
-
-      }
+      <Row middle="xs" center="xs" className={ styles.userInfo }>
+        <Col xs={2}>
+          <Link to='/'>Home</Link>
+        </Col>
+        <Col xs={10}>
+          {
+            props.user
+              &&
+              <Grid >
+                <Row middle="xs" start="xs">
+                  <Col xs={1}>
+                    <UserPicture >
+                      { props.user.photoURL }
+                    </UserPicture>
+                  </Col>
+                  <Col xs={4} className={ styles.userEmail }>
+                    { props.user.email }
+                  </Col>
+                  <Col xs={7}>
+                    <FirebaseLogoutButton
+                      text="Logout"
+                    />
+                  </Col>
+                </Row>
+              </Grid>
+          }
+        </Col>
+      </Row>
     </header>
   )
 }
@@ -49,32 +72,35 @@ class App extends Component {
   }
   render() {
     return (
-      <div>
+      <Grid>
         <FirebaseConnect />
         <FirebaseHandleUser then={ this.handleUser } />
+
         <Header user={this.props.user} />
-        <div className={ styles.app }>
-          { this.props.children }
-        </div>
+        { this.props.children }
         <Footer />
-      </div>
+      </Grid>
     )
   }
+}
+
+
+function LoggedIn (props) {
+  if (props.user) {
+    return props.children
+  }
+  return <Link to='/login'>Login</Link>
 }
 
 class HomeX extends Component {
   render() {
     return (
-      <div>
-        <br />
-        {
-          !this.props.user
-            ?
-            'You are not logged in :/'
-            :
-            'you are sooo logged in :3'
+      <LoggedIn user={this.props.user}>
+        {this.props.user
+            &&
+            <GameMain userId={this.props.user.uid} />
         }
-      </div>
+      </LoggedIn>
     )
   }
 }
