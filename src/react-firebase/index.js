@@ -39,7 +39,9 @@ function getProvider(providerName) {
     case 'google':
       return new firebase.auth.GoogleAuthProvider()
     case 'github':
-      return new firebase.auth.GoogleAuthProvider()
+      return new firebase.auth.GithubAuthProvider()
+    default:
+      console.log('invalid provider')
   }
 }
 
