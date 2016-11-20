@@ -9,7 +9,12 @@ import './index.css';
 
 function initialState() {
   return {
-    user: null
+    user: null,
+    resources: {
+      gold: 'loading...',
+      stone: 'loading...',
+      books: 'loading...'
+    }
   }
 }
 

@@ -21,42 +21,47 @@ class UserPicture extends Component {
   }
 }
 
-function Header (props) {
-  return (
-    <header className={ styles.header }>
-      <Row middle="xs" center="xs" className={ styles.userInfo }>
-        <Col xs={2}>
-          <Link to='/'>Home</Link>
-        </Col>
-        <Col xs={10}>
-          {
-            props.user
-              &&
-              <Grid >
-                <Row middle="xs" start="xs">
-                  <Col xs={1}>
-                    <UserPicture >
-                      { props.user.photoURL }
-                    </UserPicture>
-                  </Col>
-                  <Col xs={4} className={ styles.userEmail }>
-                    { props.user.email }
-                  </Col>
-                  <Col xs={7}>
-                    <FirebaseLogoutButton
-                      text="Logout"
-                      then={
-                        (result) => this.context.router.push('/')
-                      }
-                    />
-                  </Col>
-                </Row>
-              </Grid>
-          }
-        </Col>
-      </Row>
-		</header>
-	)
+class Header extends Component {
+  static contextTypes = {
+    router: React.PropTypes.object.isRequired
+  }
+  render() {
+    return (
+      <header className={ styles.header }>
+        <Row middle="xs" center="xs" className={ styles.userInfo }>
+          <Col xs={2}>
+            <Link to='/'>Home</Link>
+          </Col>
+          <Col xs={10}>
+            {
+              this.props.user
+                &&
+                <Grid >
+                  <Row middle="xs" start="xs">
+                    <Col xs={1}>
+                      <UserPicture >
+                        { this.props.user.photoURL }
+                      </UserPicture>
+                    </Col>
+                    <Col xs={4} className={ styles.userEmail }>
+                      { this.props.user.email }
+                    </Col>
+                    <Col xs={7}>
+                      <FirebaseLogoutButton
+                        text="Logout"
+                        then={
+                          (result) => this.context.router.push('/')
+                        }
+                      />
+                    </Col>
+                  </Row>
+                </Grid>
+            }
+          </Col>
+        </Row>
+      </header>
+    )
+  }
 }
 
 function Footer (props) {
