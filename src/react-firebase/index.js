@@ -65,6 +65,7 @@ export class FirebaseLogoutButton extends Component {
   handleLogout = (e) => {
     e.preventDefault()
     firebase.auth().signOut()
+      .then((result) => this.props.then && this.props.then(result))
   }
   render() {
     return (

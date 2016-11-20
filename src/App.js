@@ -45,6 +45,9 @@ function Header (props) {
                   <Col xs={7}>
                     <FirebaseLogoutButton
                       text="Logout"
+                      then={
+                        (result) => this.context.router.push('/')
+                      }
                     />
                   </Col>
                 </Row>
