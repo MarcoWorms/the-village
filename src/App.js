@@ -9,8 +9,6 @@ import {
   FirebaseLoginButton,
   FirebaseLogoutButton
 } from './react-firebase'
-import GameMain from './GameMain'
-
 
 class UserPicture extends Component {
   render() {
@@ -95,12 +93,13 @@ function LoggedIn (props) {
 class HomeX extends Component {
   render() {
     return (
-      <LoggedIn user={this.props.user}>
-        {this.props.user
-            &&
-            <GameMain userId={this.props.user.uid} />
-        }
-      </LoggedIn>
+      <Col xs={12}>
+        <LoggedIn user={this.props.user}>
+          <Link to="/game">
+            Play
+          </Link>
+        </LoggedIn>
+      </Col>
     )
   }
 }
@@ -121,7 +120,7 @@ export class Login extends Component {
           provider="google"
           text="Login with Google"
           then={
-            (result) => this.context.router.push('/')
+            (result) => this.context.router.push('/game')
           }
         />
         <br />
@@ -130,7 +129,7 @@ export class Login extends Component {
           provider="github"
           text="Login with Github"
           then={
-            (result) => this.context.router.push('/')
+            (result) => this.context.router.push('/game')
           }
         />
       </div>
