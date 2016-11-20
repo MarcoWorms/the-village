@@ -32,9 +32,12 @@ a:link, a:visited {
   color: #eeeeee;
   border-radius: 5px;
   border: solid 1px black;
+  width: 100px;
   height: 30px;
   line-height: 30px;
   padding: 0 10px;
+  box-sizing: border-box;
+  font-weight: bold;
 }
 
 

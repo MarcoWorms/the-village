@@ -52,16 +52,20 @@ function Header (props) {
           }
         </Col>
       </Row>
-    </header>
-  )
+		</header>
+	)
 }
 
 function Footer (props) {
-  return (
-    <footer className={ styles.footer }>
-      footer
-    </footer>
-  )
+	return (
+		<Row center="xs">
+			<Col xs={12}>
+				<footer className={ styles.footer }>
+					footer
+				</footer>
+			</Col>
+		</Row>
+	)
 }
 
 class App extends Component {
@@ -87,19 +91,22 @@ function LoggedIn (props) {
   if (props.user) {
     return props.children
   }
-  return <Link to='/login'>Login</Link>
+	return <Link to='/login'>Login</Link>
 }
 
 class HomeX extends Component {
-  render() {
-    return (
-      <Col xs={12}>
-        <LoggedIn user={this.props.user}>
-          <Link to="/game">
-            Play
-          </Link>
-        </LoggedIn>
-      </Col>
+	render() {
+		return (
+			<Col xs={12}>
+				<br />
+				<LoggedIn user={this.props.user}>
+					<Link to="/game">
+						Play
+					</Link>
+				</LoggedIn>
+				<br />
+				<br />
+			</Col>
     )
   }
 }
@@ -118,20 +125,21 @@ export class Login extends Component {
         <br />
         <FirebaseLoginButton
           provider="google"
-          text="Login with Google"
+          text="Google"
           then={
             (result) => this.context.router.push('/game')
           }
         />
-        <br />
         <br />
         <FirebaseLoginButton
           provider="github"
-          text="Login with Github"
+          text="Github"
           then={
             (result) => this.context.router.push('/game')
           }
         />
+        <br />
+        <br />
       </div>
     )
   }

@@ -2,24 +2,34 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Grid, Row, Col } from 'react-flexbox-grid'
 import { Link } from 'react-router'
+import styles from './gameStyles.css'
 
 
  class GameMain extends Component {
    render() {
      return (
-       <Row>
-         <Col xs={3}>
-           <ul>
+       <Row center="xs">
+         <Col xs={2}>
+           <br />
+           <ul className={ styles.gameRoutes }>
+             <li><Link to="/game/">Main</Link></li>
              <li><Link to="/game/town">Town</Link></li>
              <li><Link to="/game/troops">Troops</Link></li>
            </ul>
+           <br />
          </Col>
-         <Col xs={9}>
+         <Col xs={10}>
            {this.props.children}
          </Col>
        </Row>
      )
    }
+}
+
+export class Main extends Component {
+  render = () => (
+    <span>main</span>
+  )
 }
 
 export class Town extends Component {

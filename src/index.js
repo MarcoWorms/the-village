@@ -4,7 +4,7 @@ import { Router, Route, IndexRoute, hashHistory } from 'react-router'
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import App, { Home, Login, NoPath } from './App';
-import Game, { Town, Troops} from './GameMain'
+import Game, { Main, Town, Troops } from './GameMain'
 import './index.css';
 
 function initialState() {
@@ -35,10 +35,12 @@ ReactDOM.render(
         <IndexRoute component={Home}/>
         <Route path="login" component={ Login }/>
         <Route path="game" component={ Game }>
+          <IndexRoute component={ Main }/>
           <Route path="town" component={ Town }/>
           <Route path="troops" component={ Troops }/>
+					<Route path="*" component={ NoPath }/>
         </Route>
-        <Route path="*" component={ NoPath } />
+        <Route path="*" component={ NoPath }/>
       </Route>
     </Router>
   </Provider>,
