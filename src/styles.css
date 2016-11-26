@@ -1,9 +1,8 @@
 .app {
-  background-color: #444444;
 }
 
 .header {
-  background-color: #333333;
+  background-color: #9E5910;
 }
 
 .userPicture {
@@ -21,11 +20,11 @@
 }
 
 .footer {
-  background-color: #333333;
+  background-color: #9E5910;
 }
 
 a:link, a:visited {
-  background-color: #f44336;
+  background-color: #38089E;
   text-align: center;
   text-decoration: none;
   display: inline-block;
@@ -42,6 +41,6 @@ a:link, a:visited {
 
 
 a:hover, a:active {
-  background-color: red;
+  background-color: #340D85;
   color: #eeeeee;
 }

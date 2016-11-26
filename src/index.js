@@ -10,10 +10,14 @@ import './index.css';
 function initialState() {
   return {
     user: null,
+    energy: {
+      max: 30,
+      current: 30
+    },
     resources: {
-      gold: 'loading...',
-      stone: 'loading...',
-      books: 'loading...'
+      gold: 0,
+      stone: 0,
+      books: 0
     }
   }
 }
@@ -25,6 +29,27 @@ function reducers (state = initialState(), action) {
       return {
         ...state,
         user: action.payload
+      }
+    case 'INCREMENT_RESOURCES':
+      return {
+        ...state,
+        resources: {
+          gold: state.resources.gold + 1,
+          stone: state.resources.stone + 1,
+          books: state.resources.books + 1,
+        },
+        energy: {
+          ...state.energy,
+          current: state.energy.current - 1
+        }
+      }
+    case 'RESTORE_ENERGY':
+      return {
+        ...state,
+        energy: {
+          ...state.energy,
+          current: state.energy.max
+        }
       }
     default:
       return state
